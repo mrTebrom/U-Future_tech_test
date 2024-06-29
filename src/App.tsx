@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Outlet, Link } from "react-router-dom";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -16,13 +17,7 @@ function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
   } as MenuItem;
 }
 
-const items: MenuItem[] = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("Пользовательи", "sub1", <UserOutlined />),
-  getItem("Team", "sub2", <TeamOutlined />, [getItem("Team 1", "6"), getItem("Team 2", "8")]),
-  getItem("Files", "9", <FileOutlined />),
-];
+const items: MenuItem[] = [getItem(<Link to="/">Главное</Link>, "home", <HomeOutlined />), getItem(<Link to="user">Пользовательи</Link>, "user", <UserOutlined />)];
 
 export const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -59,7 +54,7 @@ export const App = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            Bill is a cat.
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
