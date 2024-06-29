@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme, Grid } from "antd";
 import { Outlet, Link } from "react-router-dom";
 
 const { Content, Footer, Sider } = Layout;
@@ -20,7 +20,8 @@ function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
 const items: MenuItem[] = [getItem(<Link to="/">Главное</Link>, "home", <HomeOutlined />), getItem(<Link to="user">Пользовательи</Link>, "user", <UserOutlined />)];
 
 export const App = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const { md } = Grid.useBreakpoint();
+  const [collapsed, setCollapsed] = useState(true);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -29,8 +30,8 @@ export const App = () => {
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
         collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
+        collapsed={md ? collapsed : true}
+        onCollapse={(value) => (md ? setCollapsed(value) : setCollapsed(true))}
       >
         <div className="demo-logo-vertical" />
         <Menu
@@ -44,7 +45,7 @@ export const App = () => {
         <Content style={{ margin: "0 16px" }}>
           <div
             style={{
-              padding: 24,
+              padding: md ? 24 : "24px 0",
               minHeight: 360,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
@@ -53,7 +54,7 @@ export const App = () => {
             <Outlet />
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
+        <Footer style={{ textAlign: "center" }}>Тестовое задание для U-Future</Footer>
       </Layout>
     </Layout>
   );

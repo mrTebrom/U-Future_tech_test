@@ -5,7 +5,7 @@ const { Meta } = Card;
 export const UserCard = ({ user, destroy, edit }: { user: IUser; destroy: Function; edit: Function }) => {
   return (
     <Card
-      style={{ width: 300 }}
+      style={{ maxWidth: 300 }}
       cover={
         <img
           alt={user.email}
