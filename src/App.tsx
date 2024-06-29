@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme } from "antd";
 import { Outlet, Link } from "react-router-dom";
 
 const { Content, Footer, Sider } = Layout;
@@ -42,10 +42,6 @@ export const App = () => {
       </Sider>
       <Layout>
         <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
           <div
             style={{
               padding: 24,
