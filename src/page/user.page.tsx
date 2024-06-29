@@ -49,7 +49,10 @@ export const UserPage = () => {
         </Button>
       </Space>
       <br />
-      <Space wrap>
+      <Space
+        wrap
+        style={{ marginTop: 16 }}
+      >
         {users.map((item: IUser) => (
           <UserCard
             user={item}
